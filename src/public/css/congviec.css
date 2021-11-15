@@ -1,0 +1,10 @@
+.btn-50 {
+    width: 49%;
+    margin-left: 1%;
+}
+#Congviec-Text , .Congviec-add  , .Congviec-time , .result {
+    margin-top: 10px;
+}
+.Congviec-setmusic , .Congviec-settime {
+    display: none;
+}
