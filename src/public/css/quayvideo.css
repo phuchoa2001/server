@@ -1,0 +1,44 @@
+.bar-btn {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    margin-bottom:10px ;
+  }
+  .bar-btn a {
+    text-decoration: none;
+    color: #fff;
+  }
+  .bar-btn li {
+    display: inline-block;
+    cursor: pointer;
+    width: 50%;
+    height: 30px;
+    line-height: 30px;
+    background: rgb(139, 138, 138);
+    color: #eee;
+  }
+  .list-resolution {
+    display: flex;
+  }
+  .list-resolution li {
+    list-style-type: none;
+    width: 100%;
+    background: #333;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+  }
+  .list-resolution li a {
+    text-decoration: none;
+    color: #fff;
+  }
+  video {
+    border: 1px solid lightgray;
+    width: 100%;
+    background-color: #eee;
+  }
+  .resolution.resolutioncheck  a ,.frameRate.frameRatecheck  a{
+    color: red;
+  }
+  

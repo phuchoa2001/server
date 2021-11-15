@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <script src="/js/push.js">
+    </script>
+    <link rel="stylesheet" href="/css/congviec.css">
+    <link rel="stylesheet" href="/css/congviecgirl.css">
+</head>
+<body>
+    <div class="container">
+  <div class="row">
+    <div class="col-xl-12 col-xl-12 ">
+      <h1>Báo Thức !<span class="badge bg-secondary">Online</span></h1>
+    </div>
+    </div>
+    <div class="col-xl-4 col-xl-4 col-xl-12 col-sm-12">
+    <div class="row Congviec-Texs">
+    <textarea class="form-control Congviec-Text settext" id="exampleFormControlTextarea1" rows="3" placeholder="hãy gì nội dụng tại đây "></textarea>
+    </div>
+    <div class="row">
+    <select class="form-select Congviec-time" aria-label="Default select example">
+    <option value="selected">Bấm vào để Báo thức</option>
+    <option value="1">1 Phút </option>
+    <option value="10">10 Phút </option>
+    <option value="30">30 Phút</option>
+    <option value="60">60 Phút</option>
+    <option value="option">Tùy chọn</option>
+    </select>
+    </div>
+    <div class="row Congviec-settime">
+      <div class="col">
+         <input type="text" class="form-control sethours" placeholder=" Giờ" aria-label="gio" value="" >
+          </div>
+          <div class="col">
+         <input type="text" class="form-control setminutes" placeholder=" Phút" aria-label="phut" value="" >
+          </div>
+            <div class="col">
+         <input type="text" class="form-control setseconds" placeholder=" Giây" aria-label="giay" value="" >
+          </div>
+     </div>
+    <div class="row">
+    <select class="form-select Congviec-music" aria-label="Default select example">
+    <option  value="selected">Cài Đặt Nhạc Chuông</option>
+    <option value="music1.mp3">Nhạc Chuông 1</option>
+    <option value="music2.mp3">Nhạc Chuông 2</option>
+    <option value="music3.mp3">Nhạc Chuông 3</option>
+    </select>
+    </div>
+    <div class="row Congviec-setmusic">
+    <div class="music-set">
+    <audio controls>
+    <source src="" type="audio/mpeg" class="sourcemusic" >
+    </audio>
+    </div>
+    </div>
+    <div class="row">
+    <button type="button" class="btn btn-secondary Congviec-add">Thêm Công Việc</button>
+    </div>
+    </div>
+    <div class="col-xl-8 col-xl-12 col-lg-12 col-sm-12 col-12">
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nội Dung</th>
+      <th scope="col">Thời Gian</th>
+      <th scope="col">Nhạc Chuông</th>
+      <th scope="col" class="th-etion">Chỉnh sữa</th>
+    </tr>
+  </thead>
+  <tbody class="list-table">
+
+  </tbody>
+</table>
+    </div>
+  </div>
+  <div class="row result">
+</div>
+<script src="js/congviec.js">
+
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+    body {
+        font-size: 10px;
+    }
+    .btn-50 {
+        height: 20px;
+        font-size: 10px;
+        font-size: 8px;
+    }
+    .th-etion {
+        width: 30%;
+        text-align: center;
+        height: 30px;
+    }
+}
+@media only screen and (min-width: 280px) and (max-width: 320px) {
+    body {
+        font-size: 8px;
+    }
+    .btn-50 {
+        height: 20px;
+        font-size: 10px;
+        font-size: 6px;
+    }
+    .th-etion {
+        width: 30%;
+        text-align: center;
+        height: 30px;
+    }
+}
+@media only screen and (min-width: 0px) and (max-width: 280px) {
+    body {
+        font-size: 10px;
+    }
+    .btn-50 {
+        height: 40px;
+        font-size: 10px;
+        font-size: 8px;
+    }
+    .th-etion {
+        width: 30%;
+        text-align: center;
+        height: 30px;
+    }
+}
