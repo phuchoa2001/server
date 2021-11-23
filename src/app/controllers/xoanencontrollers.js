@@ -2,7 +2,6 @@ const FormData = require('form-data');
 const axios = require('axios');
 const path = require('path');
 const fs = require("fs");
-console.log(path.join(__dirname, "../../public"))
 class xoaNenControllers {
     index(req, res) {
         var string = `${path.join(__dirname, "../../public")}/upload/${req.file.filename}`
@@ -17,7 +16,7 @@ class xoaNenControllers {
             responseType: 'arraybuffer',
             headers: {
                 ...formData.getHeaders(),
-                'X-Api-Key': '3ReEKWRZUjBWar9sTEgWnnS5',
+                'X-Api-Key': 'QLEdPxwAJCUFmNR1saKr4NXr',
             },
             encoding: null
         })
