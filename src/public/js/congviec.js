@@ -31,7 +31,6 @@ bartime.onchange = function () {
   }
 };
 barmusic.onchange = function () {
-  console.log("hello");
   var value = barmusic.value;
   var source = "/music/" + value;
   var srcmusic = ` 
