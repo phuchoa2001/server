@@ -1,6 +1,5 @@
 const Login = require('./models/Logins')
 const nodemailer = require("nodemailer");
-const db = require('../../config/db');
 class Logincontrollers  {
   // [GET] /login
   async index(req, res) {

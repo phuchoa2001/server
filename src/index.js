@@ -12,9 +12,9 @@ const { Server } = require("socket.io");
 const socket = require("./socket")
 const io = new Server(server, {
   cors: {
-    origin: "http://xoanen.surge.sh",
-    methods: ["GET", "POST"]
-  }
+    origin: ["http://xoanen.surge.sh" , 'http://localhost:3000' ],
+    methods: ["GET", "POST" ,"PUT" , "PATCH" , "HEAD" , "DELETE"]
+  }, 
 });
 dotenv.config();
 const route = require('./routers')
@@ -25,10 +25,15 @@ app.use(methodOverride('X-HTTP-Method-Override'))
 socket(io);
 //conneact DB
 db.connect();
-app.use(cors())
+const corsOptions ={
+  origin: ["http://xoanen.surge.sh", 'http://xoanen.surge.sh', 'http://localhost:3000'],
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+}
+app.use(cors(corsOptions))
 app.use(morgan('combined'))
-app.use(express.urlencoded())
-app.use(express.json())
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
 app.use(express.static(path.join(__dirname, 'public')))
 app.engine('hbs', handlebars({
   extname: '.hbs'
