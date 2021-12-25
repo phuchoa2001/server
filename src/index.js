@@ -12,7 +12,7 @@ const { Server } = require("socket.io");
 const socket = require("./socket")
 const io = new Server(server, {
   cors: {
-    origin: ["http://xoanen.surge.sh" , 'http://localhost:3000' ,  "https://xoanen-hosting3.herokuapp.com/" ],
+    origin: ["http://xoanen.surge.sh" , 'http://localhost:3000' ,  "https://xoanen.surge.sh/" ],
     methods: ["GET", "POST" ,"PUT" , "PATCH" , "HEAD" , "DELETE"]
   }, 
 });
@@ -26,7 +26,7 @@ socket(io);
 //conneact DB
 db.connect();
 const corsOptions ={
-  origin: ["http://xoanen.surge.sh", 'http://xoanen.surge.sh', 'http://localhost:3000' , "https://xoanen-hosting3.herokuapp.com"],
+  origin: ["http://xoanen.surge.sh", 'https://xoanen.surge.sh/', 'http://localhost:3000' , "https://xoanen-hosting3.herokuapp.com"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
 }
