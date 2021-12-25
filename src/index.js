@@ -13,7 +13,8 @@ const socket = require("./socket")
 const io = new Server(server, {
   cors: {
     origin: "https://xoanen.surge.sh",
-    methods: ["GET", "POST" ,"PUT" , "PATCH" , "HEAD" , "DELETE"]
+    methods: ["GET", "POST" ,"PUT" , "PATCH" , "HEAD" , "DELETE"] , 
+    credentials: true,
   }, 
 });
 dotenv.config();
