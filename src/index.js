@@ -26,7 +26,7 @@ socket(io);
 //conneact DB
 db.connect();
 const corsOptions ={
-  origin: "http://xoanen.surge.sh",
+  origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
 }
