@@ -16,7 +16,7 @@ class xoaNenControllers {
             responseType: 'arraybuffer',
             headers: {
                 ...formData.getHeaders(),
-                'X-Api-Key': 'ASZtaJo4LDvNC9MFZs6Tbv5m',
+                'X-Api-Key': 'n5r1RoUhNzWKk18sVk8WCueu',
             },
             encoding: null
         })
