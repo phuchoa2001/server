@@ -32,7 +32,10 @@ class Postcontrollers {
             format: result.format,
             url: result.url,
           };
+          console.log(module_obj);
           res.json({ payload: module_obj });
+        }else {
+          console.log("dit me t upload !")
         }
       }
     );

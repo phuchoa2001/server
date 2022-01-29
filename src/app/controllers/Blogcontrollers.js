@@ -10,10 +10,10 @@ class Postcontrollers {
   async list(req, res) {
     await Blog.find({}, function (err, data) {
       const payload = {
-        newpost : data.slice(0 , 4)  , 
-        Slide : data.slice(0  , 5) , 
-        List : data.slice((req.query.page -1) * 8  , req.query.page * 8 ) ,
-      }
+        newpost: data.slice(4, 8),
+        Slide: data.slice(3, 8),
+        List: data.slice((req.query.page - 1) * 8, req.query.page * 8),
+      };
       res.status(200).json(payload);
     });
     //
