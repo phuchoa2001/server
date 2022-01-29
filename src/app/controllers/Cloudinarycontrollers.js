@@ -17,7 +17,6 @@ class Postcontrollers {
     });
   }
   async upload(req, res) {
-    let object = null;
     await cloudinary.uploader.upload(
       `${path.join(__dirname, `../../public/upload`)}${
         "\\" + req.file.filename
@@ -25,16 +24,16 @@ class Postcontrollers {
       { public_id: req.file.filename },
       function (error, result) {
         object = result;
+        const module_obj = {
+          public_id: object.public_id,
+          width: object.width,
+          height: object.height,
+          format: object.format,
+          url: object.url,
+        };
+        res.json({ payload: module_obj });
       }
     );
-    const module_obj = {
-      public_id: object.public_id,
-      width: object.width,
-      height: object.height,
-      format: object.format,
-      url: object.url,
-    };
-    res.json({ payload: module_obj });
   }
   delete(req, res) {
     cloudinary.uploader.destroy(req.body.id, function (err, result) {
