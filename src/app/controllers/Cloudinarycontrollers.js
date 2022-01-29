@@ -23,6 +23,7 @@ class Postcontrollers {
       }`,
       { public_id: req.file.filename },
       function (error, result) {
+        console.log(result);
         const module_obj = {
           public_id: result.public_id,
           width: result.width,
