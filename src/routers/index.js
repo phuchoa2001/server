@@ -6,10 +6,7 @@ const BlogRouter = require("./blog");
 const cloudinaryRouter = require("./cloudinary");
 function route(app) {
   app.get("/", (req, res) => {
-    res.render("home");
-  });
-  app.get("/callback/app", (req, res) => {
-      res.render("callback" , {app : req.query.app} )
+    req.query.app ? res.redirect(`app/${req.query.app}`) : res.render("home");
   });
   app.get("/app/baothuc", (req, res) => {
     res.render("congviec");
