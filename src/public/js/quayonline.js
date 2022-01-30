@@ -17,7 +17,7 @@ try {
     alert("không có getDisplayMedia ");
   }
 } catch {
-  window.location = "/callback/app?app=baothuc";
+  window.location = "/callback/app?app=quayvideoonline";
 }
 function handleClickFrameRate() {
   console.log(document.querySelector(".frameRate.frameRatecheck"));
