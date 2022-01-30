@@ -12,6 +12,9 @@ let widthvideo = 1280;
 let frameRateVideo = 30;
 let heightvideo = 720;
 let recorder, stream;
+if (!navigator.mediaDevices.getDisplayMedia) {
+  alert("không có getDisplayMedia ")
+}
 function handleClickFrameRate() {
   console.log(document.querySelector(".frameRate.frameRatecheck"));
   document.querySelector(".frameRate.frameRatecheck").classList.remove("frameRatecheck")
@@ -32,7 +35,7 @@ for (let i = 0; i < frameRate.length; i++) {
 }
 async function startRecording() {
   if (!navigator.mediaDevices.getDisplayMedia) {
-    alert("không có getDisplayMedia")
+    alert("không có getDisplayMedia ")
   }
   stream = await navigator.mediaDevices.getDisplayMedia({
     audio: true,
