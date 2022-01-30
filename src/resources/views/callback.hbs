@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p class="time">Đang Callback trong 5 giây - app {{app}}</p>
+    <script>
+        let sum = 5;
+        const test = `{{{ app }}}`;
+        const time = document.querySelector(".time");
+        setInterval(() => {
+            sum--;
+            time.innerHTML = `Đang Callback trong ${sum} giây - app ${test}`
+        }, 1000)
+        setTimeout(() => {
+            window.location = `/app/${test}`;
+        }, 5000)
+    </script>
+</body>
+
+</html>

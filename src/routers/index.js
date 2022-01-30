@@ -9,7 +9,7 @@ function route(app) {
     res.render("home");
   });
   app.get("/callback/app", (req, res) => {
-    res.redirect(`/app/${req.query.app}?callback=true`);
+      res.render("callback" , {app : req.query.app} )
   });
   app.get("/app/baothuc", (req, res) => {
     res.render("congviec");
