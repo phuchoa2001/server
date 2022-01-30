@@ -12,12 +12,8 @@ let widthvideo = 1280;
 let frameRateVideo = 30;
 let heightvideo = 720;
 let recorder, stream;
-try {
-  if (!navigator.mediaDevices.getDisplayMedia) {
-    alert("không có getDisplayMedia ");
-  }
-} catch {
-  window.location = "/callback/app?app=quayvideoonline";
+if (!navigator.mediaDevices) {
+  alert("không có getDisplayMedia ");
 }
 function handleClickFrameRate() {
   console.log(document.querySelector(".frameRate.frameRatecheck"));
