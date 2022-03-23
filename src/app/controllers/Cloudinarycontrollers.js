@@ -8,7 +8,6 @@ cloudinary.config({
 });
 class Postcontrollers {
   async index(req, res) {
-    console.log("get data");
     cloudinary.api.resources(function (error, result) {
       result.resources.map((image) => {
         image.id = image.public_id;
@@ -34,8 +33,8 @@ class Postcontrollers {
           };
           console.log(module_obj);
           res.json({ payload: module_obj });
-        }else {
-          console.log("dit me t upload !")
+        } else {
+          console.log("dit me t upload !");
         }
       }
     );
