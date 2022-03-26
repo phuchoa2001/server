@@ -2,7 +2,7 @@ const Mypicture = require('./models/MyPicture');
 class Mypicturecontrollers {
     async get(req, res) {
         await Mypicture.find({}, function (err, data) {
-            res.json({ list: data.slice((req.query.page - 1) * 20, req.query.page * 20) });
+            res.json({ list: data.reverse().slice((req.query.page - 1) * 20, req.query.page * 20) });
         });
     }
     edit(req, res) {
@@ -30,7 +30,6 @@ class Mypicturecontrollers {
     }
     async getimage(req, res) {
         await Mypicture.findOne({ _id: req.params.id }, function (err, data) {
-            console.log(data)
             res.status(200).json({ image: data });
         })
     }
@@ -41,7 +40,7 @@ class Mypicturecontrollers {
                 { tag: { $regex: req.query.q, $options: "i" } },
             ],
         }, function (err, data) {
-            res.json({ list: data.slice((req.query.page - 1) * 20, req.query.page * 20) });
+            res.json({ list: data.reverse().slice((req.query.page - 1) * 20, req.query.page * 20) });
         });
     }
 

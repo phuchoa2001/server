@@ -2,7 +2,7 @@ const Schools = require('./models/schools');
 class Mypicturecontrollers {
     async get(req, res) {
         await Schools.find({}, function (err, data) {
-            res.json({ list: data.slice((req.query.page - 1) * 20, req.query.page * 20) });
+            res.json({ list: data.reverse().slice((req.query.page - 1) * 20, req.query.page * 20) });
         });
     }
     edit(req, res) {
@@ -41,7 +41,7 @@ class Mypicturecontrollers {
                 { tag: { $regex: req.query.q, $options: "i" } },
             ],
         }, function (err, data) {
-            res.json({ list: data.slice((req.query.page - 1) * 20, req.query.page * 20) });
+            res.json({ list: data.reverse().slice((req.query.page - 1) * 20, req.query.page * 20) });
         });
     }
 
