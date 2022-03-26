@@ -1,0 +1,10 @@
+const exprees = require("express");
+const router = exprees.Router();
+const Schools = require("../app/controllers/Schoolscontrollers");
+router.get("/", Schools.get);
+router.post("/", Schools.add);
+router.put("/", Schools.edit);
+router.delete("/", Schools.delete);
+router.get("/search", Schools.search);
+router.get("/image/:id", Schools.getimage);
+module.exports = router;

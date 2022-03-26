@@ -21,8 +21,7 @@ class Postcontrollers {
   async add(req, res) {
     const payload = JSON.parse(req.body.payload);
     await cloudinary.uploader.upload(
-      `${path.join(__dirname, `../../public/upload`)}${
-        "\\" + req.file.filename
+      `${path.join(__dirname, `../../public/upload`)}${"\\" + req.file.filename
       }`,
       { public_id: req.file.filename },
       function (error, result) {
@@ -37,8 +36,7 @@ class Postcontrollers {
     const payload = JSON.parse(req.body.payload);
     if (req.file) {
       await cloudinary.uploader.upload(
-        `${path.join(__dirname, `../../public/upload`)}${
-          "\\" + req.file.filename
+        `${path.join(__dirname, `../../public/upload`)}${"\\" + req.file.filename
         }`,
         { public_id: req.file.filename },
         function (error, result) {
