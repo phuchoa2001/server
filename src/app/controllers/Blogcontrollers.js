@@ -12,7 +12,7 @@ class Postcontrollers {
     Blog.find({}, function (err, data) {
       const payload = {
         newpost: data.slice(4, 8),
-        Slide: data.slice(3, 8),
+        Slide: data.slice(0, 5),
         List: data.slice((req.query.page - 1) * 8, req.query.page * 8),
       };
       res.status(200).json(payload);
