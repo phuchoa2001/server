@@ -1,4 +1,5 @@
 const Blog = require("./models/Blogs");
+const SortTag = require("../../common/Sorttag");
 var cloudinary = require("cloudinary").v2;
 const path = require("path");
 cloudinary.config({
@@ -8,14 +9,14 @@ cloudinary.config({
 });
 class Postcontrollers {
   async list(req, res) {
-    await Blog.find({}, function (err, data) {
+    Blog.find({}, function (err, data) {
       const payload = {
         newpost: data.slice(4, 8),
         Slide: data.slice(3, 8),
         List: data.slice((req.query.page - 1) * 8, req.query.page * 8),
       };
       res.status(200).json(payload);
-    });
+    }).sort({ $natural: -1 }).limit(8).skip((req.query.page - 1) * 8);
     //
   }
   async add(req, res) {
@@ -31,6 +32,19 @@ class Postcontrollers {
         res.status(200).json({ payload: payload });
       }
     );
+  }
+  async gettag(req, res) {
+    const { tag } = req.query;
+    const id = tag;
+    Blog.findOne({ _id: tag }, { tag: 1 }, async function (err, data) {
+      const { tag } = data;
+      await Blog.find({},
+        async function (err, data) {
+          const result = await SortTag(tag, data, id);
+          res.json(result);
+        }
+      ).sort({ $natural: -1 }).limit(100);
+    });
   }
   async edit(req, res) {
     const payload = JSON.parse(req.body.payload);
