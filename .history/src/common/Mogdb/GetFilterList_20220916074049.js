@@ -2,7 +2,7 @@
 
 
 
-async function GetFilterList(Model, res, req, search1, search2, filters) {
+async function GetFilterList(Model, res, req, search1, search2, filters,) {
     const page = +req.query.page || 1;
     const page_size = +req.query.page_size || 100;
     const search = req.query.search || null;
@@ -11,8 +11,7 @@ async function GetFilterList(Model, res, req, search1, search2, filters) {
             { [search1]: { $regex: search, $options: "i" } },
             { [search2]: { $regex: search, $options: "i" } },
         ],
-    } : {};
-    console.log("Model, res, req, search1, search2, filters", Model, res, req, search1, search2, filters)
+    } : {}
     await Model.countDocuments().then(async (count_documents) => {
         await Model.find(objectSearch, function (err, data) {
             res.json({
