@@ -6,7 +6,7 @@ const Cssanimation_App = new Schema({
     title: { type: String, required: true },
     html: { type: String },
     css: { type: String },
-    category: [{ type: Schema.Types.ObjectId, required: true, ref: "Cssanimation_category" }],
+    category: [{ type: Schema.Types.ObjectId required: true, ref: "Cssanimation_category" }],
     createAt: { type: Date, default: Date.now },
     updateAt: { type: Date, default: Date.now }
 });
