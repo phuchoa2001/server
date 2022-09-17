@@ -22,10 +22,7 @@ class Categorycontrollers {
     })
   }
   async delete(req, res) {
-    Delete(Admin_category, res, req, {
-      name: "Admin",
-      desc: `đã xóa ${req.body.ids.length} thể loại`
-    });
+    Delete(Admin_category, res, req);
   }
 }
 module.exports = new Categorycontrollers();

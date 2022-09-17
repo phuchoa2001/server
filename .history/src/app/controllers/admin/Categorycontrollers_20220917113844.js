@@ -22,6 +22,7 @@ class Categorycontrollers {
     })
   }
   async delete(req, res) {
+    console.log("req.body" , req.body.ids);
     Delete(Admin_category, res, req, {
       name: "Admin",
       desc: `đã xóa ${req.body.ids.length} thể loại`

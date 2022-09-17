@@ -11,21 +11,15 @@ class Categorycontrollers {
   }
   async upload(req, res) {
     Upload(Admin_category, res, req, req.body, {
-      name: "Admin",
-      desc: "Đã thêm một thể loại"
+      nane : "Admin" , 
+      desc : "Đã thêm một thể loại"
     });
   }
   async edit(req, res) {
-    Edit(Admin_category, res, req, req.body, {
-      name: "Admin",
-      desc: "Đã sửa một thể loại"
-    })
+    Edit(Admin_category, res, req, req.body)
   }
   async delete(req, res) {
-    Delete(Admin_category, res, req, {
-      name: "Admin",
-      desc: `đã xóa ${req.body.ids.length} thể loại`
-    });
+    Delete(Admin_category, res, req);
   }
 }
 module.exports = new Categorycontrollers();

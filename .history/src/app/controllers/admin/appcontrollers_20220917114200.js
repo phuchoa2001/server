@@ -16,16 +16,10 @@ class Appcontrollers {
     });
   }
   async edit(req, res) {
-    Edit(Admin_App, res, req, req.body, {
-      name: "Admin",
-      desc: "Đã sửa một thể loại"
-    })
+    Edit(Admin_App, res, req, req.body)
   }
   async delete(req, res) {
-    Delete(Admin_App, res, req, {
-      name: "Admin",
-      desc: `đã xóa ${req.body.ids.length} thể loại`
-    });
+    Delete(Admin_App, res, req);
   }
 }
 module.exports = new Appcontrollers();
