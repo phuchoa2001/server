@@ -7,11 +7,9 @@ const CategoryRouter = require("./category");
 const NotificationRouter = require("./notification");
 const PublicRouter = require("./public");
 
-const { CheckLogin, AddToken, DeleteToken } = require("../../common/Mogdb/Login");
-const { authenToken } = require("../../common/Mogdb/authenToken")
-const Admin_login = require("../../app/controllers/models/admin/login");
+const { CheckLogin, AddToken } = require("../../common/Mogdb/Login");
 
-
+let refreshTokens = [];
 
 
 function AdminRouter(app) {
@@ -21,22 +19,18 @@ function AdminRouter(app) {
     app.use("/admin/category", CategoryRouter);
     app.use("/admin/notification", NotificationRouter);
     app.use("/public", PublicRouter);
-    app.post('/admin/profile', (req, res) => {
-        const authorizationHeader = req.headers['authorization'];
-        // 'Beaer [token]'
-        const token = authorizationHeader.split(' ')[1];
-        if (!token) res.sendStatus(401);
+    app.post('/admin/refreshToken', (req, res) => {
+        const refreshToken = req.body.token;
+        if (!refreshToken) res.sendStatus(401);
+        if (!refreshTokens.includes(refreshToken)) res.sendStatus(403);
 
-        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data) => {
-            const { username, password } = data;
+        jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, data) => {
             if (err) res.sendStatus(403);
-            Admin_login.findOne({ username, password }, function (err, data) {
-                if (err) {
-                    res.sendStatus(403)
-                } else {
-                    res.json(data)
-                }
-            })
+            const accessToken = jwt.sign(
+                { username: data.username },
+                process.env.ACCESS_TOKEN_SECRET,
+            );
+            res.json({ accessToken });
         });
     });
     app.post('/admin/login', CheckLogin, (req, res) => {
@@ -47,10 +41,9 @@ function AdminRouter(app) {
         })
     });
     app.post('/admin/logout', (req, res) => {
-        const token = req.body.token;
-        DeleteToken(token).then(_ => {
-            res.sendStatus(200);
-        })
+        const refreshToken = req.body.token;
+        refreshTokens = refreshTokens.filter((refToken) => refToken !== refreshToken);
+        res.sendStatus(200);
     });
 }
 

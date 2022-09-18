@@ -12,13 +12,14 @@ const { authenToken } = require("../../common/Mogdb/authenToken")
 const Admin_login = require("../../app/controllers/models/admin/login");
 
 
+let refreshTokens = [];
 
 
 function AdminRouter(app) {
     app.use("/admin/image", ImageAdminRouter);
     app.use("/admin/icon", IconAdminRouter);
-    app.use("/admin/app", AppAdminRouter);
-    app.use("/admin/category", CategoryRouter);
+    app.use("/admin/app", authenToken, AppAdminRouter);
+    app.use("/admin/category",  authenToken ,CategoryRouter);
     app.use("/admin/notification", NotificationRouter);
     app.use("/public", PublicRouter);
     app.post('/admin/profile', (req, res) => {
