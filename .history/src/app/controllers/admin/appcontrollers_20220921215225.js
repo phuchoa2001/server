@@ -2,8 +2,6 @@ const Admin_App = require("../models/admin/App");
 const { GetFilterList, GetFilterId } = require("../../../common/Mogdb/GetFilterList")
 const { Upload, Edit, Delete } = require("../../../common/Mogdb/Action");
 
-const { increaseViews } = require("../../../common/Mogdb/increaseViews");
-
 class Appcontrollers {
   getAll(req, res) {
     GetFilterList(Admin_App, res, req, "name", "name", ['image', 'icon', "category"]);
@@ -30,7 +28,7 @@ class Appcontrollers {
     });
   }
   async UpView(req, res) {
-    increaseViews(Admin_App, "viewTotal", req.params.id, req, res)
+   
   }
 }
 module.exports = new Appcontrollers();

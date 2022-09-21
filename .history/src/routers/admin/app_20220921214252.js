@@ -9,5 +9,5 @@ router.get("/:id", authenTokenClient, AppcontrollersAdmin.getId);
 router.post('/', authenToken, AppcontrollersAdmin.upload);
 router.patch('/:id', authenToken, AppcontrollersAdmin.edit);
 router.delete('/', authenToken, AppcontrollersAdmin.delete);
-router.get('/increaseviews/:id', authenToken, AppcontrollersAdmin.UpView);
+router.get('/', authenToken, AppcontrollersAdmin.increaseViews);
 module.exports = router;

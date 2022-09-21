@@ -30,7 +30,7 @@ class Appcontrollers {
     });
   }
   async UpView(req, res) {
-    increaseViews(Admin_App, "viewTotal", req.params.id, req, res)
+    increaseViews(Admin_App, "viewTotal", req.params.id)
   }
 }
 module.exports = new Appcontrollers();

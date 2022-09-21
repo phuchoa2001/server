@@ -2,7 +2,7 @@ const Admin_App = require("../models/admin/App");
 const { GetFilterList, GetFilterId } = require("../../../common/Mogdb/GetFilterList")
 const { Upload, Edit, Delete } = require("../../../common/Mogdb/Action");
 
-const { increaseViews } = require("../../../common/Mogdb/increaseViews");
+const increaseViews = require("../../../common/Mogdb/increaseViews");
 
 class Appcontrollers {
   getAll(req, res) {
@@ -30,7 +30,7 @@ class Appcontrollers {
     });
   }
   async UpView(req, res) {
-    increaseViews(Admin_App, "viewTotal", req.params.id, req, res)
+    increaseViews(Admin_App, "viewTotal", req.params.id)
   }
 }
 module.exports = new Appcontrollers();
