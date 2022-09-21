@@ -9,8 +9,8 @@ const Admin_app = new Schema({
     category: [{ type: Schema.Types.ObjectId, ref: "Admin_category" }],
     image: { type: String, ref: "Admin_image" },
     icon: { type: String, ref: "Admin_Icon" },
-    goverment: { type: Boolean },
-    viewTotal: { type: String },
+    Goverment: { type: Boolean },
+    viewTotal: { type: Number },
     createAt: { type: Date, default: Date.now },
     updateAt: { type: Date, default: Date.now }
 });
