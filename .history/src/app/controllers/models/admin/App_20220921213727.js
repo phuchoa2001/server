@@ -10,7 +10,7 @@ const Admin_app = new Schema({
     image: { type: String, ref: "Admin_image" },
     icon: { type: String, ref: "Admin_Icon" },
     Goverment: { type: Boolean },
-    viewTotal: { type: Number },
+    viewTotal: 0,
     createAt: { type: Date, default: Date.now },
     updateAt: { type: Date, default: Date.now }
 });
