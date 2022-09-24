@@ -1,7 +1,7 @@
 const Admin_App = require("../models/admin/App");
 const Admin_Image = require("../models/admin/image");
 const Admin_Category = require("../models/admin/category");
-const { GetSortOffer, GetSortClick, GetSortHot, GetSortNormal } = require("../../../common/Mogdb/AppSort");
+const {GetSortOffer} = require("../../../common/Mogdb/AppSort");
 
 class PublicControllers {
   async total(req, res) {
@@ -28,17 +28,8 @@ class PublicControllers {
     })
   }
   async Getapp(req, res) {
-    if (req.body.sort === "offer") {
-      GetSortOffer(Admin_App, req, res, "name", "name");
-    }
-    if (req.body.sort === "click") {
-      GetSortClick(Admin_App, req, res, "name", "name");
-    }
-    if (req.body.sort === "hot") {
-      GetSortHot(Admin_App, req, res, "name", "name");
-    }
-    if (req.body.sort === "normal") {
-      GetSortNormal(Admin_App, req, res, "name", "name");
+    if (req.query.sort === "offer") {
+      GetSortOffer(Admin_App, req, res);
     }
   }
 }

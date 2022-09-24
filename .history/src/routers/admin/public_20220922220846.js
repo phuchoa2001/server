@@ -4,5 +4,5 @@ const router = exprees.Router();
 const PublicControllersAdmin = require("../../app/controllers/admin/PublicControllers")
 
 router.get("/total", PublicControllersAdmin.total);
-router.post("/app", PublicControllersAdmin.Getapp);
+router.get("/public/app", PublicControllersAdmin.Getapp);
 module.exports = router;

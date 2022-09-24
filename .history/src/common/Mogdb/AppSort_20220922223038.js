@@ -1,0 +1,9 @@
+
+async function GetSortOffer(Model, req, res) {
+    console.log(req.body.ids.slice(0, 2).length);
+    Model.find({ _id: { $in: req.body.ids } }, function (err, data) {
+        console.log("data", data);
+        res.json({ message: data })
+    })
+}
+module.exports = { GetSortOffer };
