@@ -36,10 +36,10 @@ class Imagecontrollers {
           };
           const post = new Admin_icon(module_obj);
           await post.save();
-          AddNotification(
-            "Admin",
-            "Đã thêm một 1 biểu tượng"
-          )
+          AddNotification({
+            name: "Admin",
+            desc: "Đã thêm một 1 biểu tượng"
+          })
           res.json({ payload: module_obj });
         }
       }
@@ -57,10 +57,10 @@ class Imagecontrollers {
           DeleteArr.map(async (item, index) => {
             cloudinary.uploader.destroy(item, async function (err, result) { });
           })
-          AddNotification(
-            "Admin",
-            `đã xóa ${DeleteArr.length} biểu tượng`
-          )
+          AddNotification({
+            name: "Admin",
+            desc: `đã xóa ${DeleteArr.length} biểu tượng`
+          })
           res.json({ messger: `đã xóa ${DeleteArr.length} biểu tượng Thành công` });
         })
       }

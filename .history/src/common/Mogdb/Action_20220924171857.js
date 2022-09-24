@@ -4,10 +4,10 @@ async function Upload(Model, res, req, module_obj, notification) {
     console.log("module_obj" , module_obj);
     const post = new Model(module_obj);
     await post.save();
-    res.json({ payload: module_obj });
     if (notification) {
         AddNotification(notification.name, notification.desc)
     }
+    res.json({ payload: module_obj });
 }
 async function Edit(Model, res, req, module_obj , notification) {
     Model.updateOne({ _id: req.params.id }, module_obj).then(_i => {

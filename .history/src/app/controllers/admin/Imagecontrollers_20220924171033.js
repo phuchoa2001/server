@@ -1,7 +1,7 @@
 const path = require("path");
 var cloudinary = require("cloudinary").v2;
 
-const Admin_icon = require("../models/admin/icon");
+const Admin_image = require("../models/admin/image");
 const { AddNotification } = require("../../../common/Mogdb/Notification");
 const { GetList, GetId } = require("../../../common/Mogdb/GetList")
 
@@ -13,10 +13,10 @@ cloudinary.config({
 
 class Imagecontrollers {
   getAll(req, res) {
-    GetList(Admin_icon, res, req, "public_id", "format");
+    GetList(Admin_image, res, req, "public_id", "format");
   }
   getId(req, res) {
-    GetId(Admin_icon, res, req, { _id: req.params.id });
+    GetId(Admin_image, res, req, { _id: req.params.id });
   }
   async upload(req, res) {
     await cloudinary.uploader.upload(
@@ -34,11 +34,11 @@ class Imagecontrollers {
             format: result.format,
             url: result.url,
           };
-          const post = new Admin_icon(module_obj);
+          const post = new Admin_image(module_obj);
           await post.save();
           AddNotification(
-            "Admin",
-            "Đã thêm một 1 biểu tượng"
+            name: "Admin",
+            desc: "Đã thêm một 1 hình ảnh"
           )
           res.json({ payload: module_obj });
         }
@@ -46,22 +46,22 @@ class Imagecontrollers {
     );
   }
   async delete(req, res) {
-    Admin_icon.find({ _id: { "$in": req.body.ids } }, async function (err, data) {
+    Admin_image.find({ _id: { "$in": req.body.ids } }, async function (err, data) {
       const DeleteArr = data.reduce((initialValue, currentValue) => {
         return [...initialValue, currentValue.public_id]
       }, []);
       if (err) {
         res.json({ message: err })
       } else {
-        Admin_icon.deleteMany({ public_id: { "$in": DeleteArr } }).then(_i => {
+        Admin_image.deleteMany({ public_id: { "$in": DeleteArr } }).then(_i => {
           DeleteArr.map(async (item, index) => {
             cloudinary.uploader.destroy(item, async function (err, result) { });
           })
           AddNotification(
-            "Admin",
-            `đã xóa ${DeleteArr.length} biểu tượng`
+            name: "Admin",
+            desc: `đã xóa ${DeleteArr.length} hình ảnh`
           )
-          res.json({ messger: `đã xóa ${DeleteArr.length} biểu tượng Thành công` });
+          res.json({ messger: `đã xóa ${DeleteArr.length} ảnh Thành công` });
         })
       }
     })
