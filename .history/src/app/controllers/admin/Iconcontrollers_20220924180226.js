@@ -16,8 +16,10 @@ class Imagecontrollers {
     GetList(Admin_icon, res, req, "public_id", "format");
   }
   getId(req, res) {
-    if(req.params.id){
+    if(req.params.id ){
       GetId(Admin_icon, res, req, { _id: req.params.id });
+    }else {
+      res.status(200);
     }
   }
   async upload(req, res) {
