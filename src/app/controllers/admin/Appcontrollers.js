@@ -18,6 +18,7 @@ class Appcontrollers {
     });
   }
   async edit(req, res) {
+    req.body.viewTotal = 0;
     Edit(Admin_App, res, req, req.body, {
       name: "Admin",
       desc: "Đã sửa một thể loại"
