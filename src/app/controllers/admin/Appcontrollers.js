@@ -21,13 +21,13 @@ class Appcontrollers {
     req.body.viewTotal = 0;
     Edit(Admin_App, res, req, req.body, {
       name: "Admin",
-      desc: "Đã sửa một thể loại"
+      desc: "Đã sửa một ứng dụng"
     })
   }
   async delete(req, res) {
     Delete(Admin_App, res, req, {
       name: "Admin",
-      desc: `đã xóa ${req.body.ids.length} thể loại`
+      desc: `đã xóa ${req.body.ids.length} ứng dụng`
     });
   }
   async UpView(req, res) {
