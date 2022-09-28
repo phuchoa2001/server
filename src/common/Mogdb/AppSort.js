@@ -2,6 +2,7 @@
 async function GetSortOffer(Model, req, res, search1, search2) {
     const page = +req.body.page || 1;
     const page_size = +req.body.page_size || 100;
+    console.log("req.body", req.body);
     const search = req.body.search || null;
     const IdArr = req.body?.ids?.slice(0, 3) || [];
     const objectSearch = search ? {
@@ -30,7 +31,7 @@ async function GetSortOffer(Model, req, res, search1, search2) {
                         total: count_documents
                     },
                 });
-            }).populate(['image', 'icon', "category"]).sort({ viewTotal: -1 }).limit(page_size - 3).skip((page - 1) * (page_size - 3));
+            }).populate(['image', 'icon', "category"]).sort({ viewTotal: -1 }).limit(page_size - IdArr.length).skip((page - 1) * (page_size - IdArr.length));
         }).limit(3).populate(['image', 'icon', "category"]);
     })
 }
