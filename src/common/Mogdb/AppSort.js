@@ -1,8 +1,8 @@
 
 async function GetSortOffer(Model, req, res, search1, search2) {
-    const page = +req.query.page || 1;
-    const page_size = +req.query.page_size || 100;
-    const search = req.query.search || null;
+    const page = +req.body.page || 1;
+    const page_size = +req.body.page_size || 100;
+    const search = req.body.search || null;
     const IdArr = req.body?.ids?.slice(0, 3) || [];
     const objectSearch = search ? {
         _id: { $in: IdArr },
@@ -35,9 +35,9 @@ async function GetSortOffer(Model, req, res, search1, search2) {
     })
 }
 async function GetSortHot(Model, req, res, search1, search2) {
-    const page = +req.query.page || 1;
-    const page_size = +req.query.page_size || 100;
-    const search = req.query.search || null;
+    const page = +req.body.page || 1;
+    const page_size = +req.body.page_size || 100;
+    const search = req.body.search || null;
     const objectSearch = search ? {
         $or: [
             { [search1]: { $regex: search, $options: "i" } },
@@ -59,9 +59,9 @@ async function GetSortHot(Model, req, res, search1, search2) {
     })
 }
 async function GetSortNormal(Model, req, res, search1, search2, filters) {
-    const page = +req.query.page || 1;
-    const page_size = +req.query.page_size || 100;
-    const search = req.query.search || null;
+    const page = +req.body.page || 1;
+    const page_size = +req.body.page_size || 100;
+    const search = req.body.search || null;
     const objectSearch = search ? {
         $or: [
             { [search1]: { $regex: search, $options: "i" } },
@@ -83,9 +83,9 @@ async function GetSortNormal(Model, req, res, search1, search2, filters) {
 }
 
 async function GetSortClick(Model, req, res, search1, search2) {
-    const page = +req.query.page || 1;
-    const page_size = +req.query.page_size || 100;
-    const search = req.query.search || null;
+    const page = +req.body.page || 1;
+    const page_size = +req.body.page_size || 100;
+    const search = req.body.search || null;
     const IdArr = req.body.ids;
     const objectSearch = search ? {
         _id: { $in: IdArr },
