@@ -3,7 +3,7 @@ async function GetSortOffer(Model, req, res, search1, search2) {
     const page = +req.query.page || 1;
     const page_size = +req.query.page_size || 100;
     const search = req.query.search || null;
-    const IdArr = req.body.ids.slice(0, 3);
+    const IdArr = req.body.ids.slice(0, 3) || [];
     const objectSearch = search ? {
         _id: { $in: IdArr },
     } : {
