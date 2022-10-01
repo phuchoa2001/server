@@ -2,7 +2,6 @@
 async function GetSortOffer(Model, req, res, search1, search2) {
     const page = +req.body.page || 1;
     const page_size = +req.body.page_size || 100;
-    console.log("req.body", req.body);
     const search = req.body.search || null;
     const IdArr = req.body?.ids?.slice(0, 3) || [];
     const objectSearch = search ? {

@@ -28,6 +28,9 @@ class PublicControllers {
     })
   }
   async Getapp(req, res) {
+    if(req.body.sort = "sort") {
+      GetSortOffer(Admin_App, req, res, "name", "name");
+    }
     if (req.body.sort === "click") {
       GetSortClick(Admin_App, req, res, "name", "name");
     }
@@ -37,7 +40,7 @@ class PublicControllers {
     if (req.body.sort === "normal") {
       GetSortNormal(Admin_App, req, res, "name", "name");
     }else {
-      GetSortOffer(Admin_App, req, res, "name", "name");
+      GetSortNormal(Admin_App, req, res, "name", "name");
     }
   }
 }
