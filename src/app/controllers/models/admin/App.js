@@ -7,11 +7,12 @@ const Admin_app = new Schema({
     url: { type: String, required: true },
     description: { type: String, required: true },
     github: { type: String, required: true },
+    categoryString: { type: String, require: true },
     category: [{ type: Schema.Types.ObjectId, ref: "Admin_category" }],
     image: { type: String, ref: "Admin_image", required: true },
     icon: { type: String, ref: "Admin_Icon", required: true },
     goverment: { type: Boolean, required: true },
-    viewTotal: { type: Number },
+    viewTotal: { type: Number, require: true },
     createAt: { type: Date, default: Date.now, required: true },
     updateAt: { type: Date, default: Date.now, required: true }
 });

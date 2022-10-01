@@ -1,4 +1,5 @@
 const Admin_App = require("../models/admin/App");
+const Category_App = require("../models/admin/category");
 const { GetFilterList, GetFilterId } = require("../../../common/Mogdb/GetFilterList")
 const { Upload, Edit, Delete } = require("../../../common/Mogdb/Action");
 
@@ -12,18 +13,29 @@ class Appcontrollers {
     GetFilterId(Admin_App, res, req, { _id: req.params.id }, ['image', 'icon', "category"]);
   }
   async upload(req, res) {
+
     req.body.viewTotal = 0;
-    Upload(Admin_App, res, req, req.body, {
-      name: "Admin",
-      desc: "Đã thêm một ứng dụng"
-    });
+    Category_App.find({ _id: { $in: req.body.category } }, function (err, data) {
+      if (!err) {
+        const categoryString = data.reduce((currentIndex, currentValue) => currentIndex + "," + currentValue.name, "");
+        req.body.categoryString = categoryString.slice(1, categoryString.length)
+        Upload(Admin_App, res, req, req.body, {
+          name: "Admin",
+          desc: "Đã thêm một ứng dụng"
+        });
+      }
+    })
   }
   async edit(req, res) {
-    req.body.viewTotal = 0;
-    console.log("req.body" , req.body);
-    Edit(Admin_App, res, req, req.body, {
-      name: "Admin",
-      desc: "Đã sửa một ứng dụng"
+    Category_App.find({ _id: { $in: req.body.category } }, function (err, data) {
+      if (!err) {
+        const categoryString = data.reduce((currentIndex, currentValue) => currentIndex + "," + currentValue.name, "");
+        req.body.categoryString = categoryString.slice(1, categoryString.length)
+        Edit(Admin_App, res, req, req.body, {
+          name: "Admin",
+          desc: "Đã sửa một ứng dụng"
+        })
+      }
     })
   }
   async delete(req, res) {
