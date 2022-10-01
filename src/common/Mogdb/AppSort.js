@@ -58,10 +58,11 @@ async function GetSortHot(Model, req, res, search1, search2) {
         }).populate(['image', 'icon', "category"]).sort({ viewTotal: -1 }).limit(page_size).skip((page - 1) * (page_size));
     })
 }
-async function GetSortNormal(Model, req, res, search1, search2, filters) {
+async function GetSortNormal(Model, req, res, search1, search2) {
     const page = +req.body.page || 1;
     const page_size = +req.body.page_size || 100;
     const search = req.body.search || null;
+    console.log("page" , page , "page_size" , page_size )
     const objectSearch = search ? {
         $or: [
             { [search1]: { $regex: search, $options: "i" } },
@@ -78,7 +79,7 @@ async function GetSortNormal(Model, req, res, search1, search2, filters) {
                     total: count_documents
                 },
             });
-        }).populate(filters).sort({ $natural: -1 }).limit(page_size).skip((page - 1) * page_size);
+        }).populate(['image', 'icon', "category"]).sort({ $natural: -1 }).limit(page_size).skip((page - 1) * page_size);
     })
 }
 
