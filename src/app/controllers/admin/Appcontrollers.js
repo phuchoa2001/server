@@ -12,6 +12,7 @@ class Appcontrollers {
     GetFilterId(Admin_App, res, req, { _id: req.params.id }, ['image', 'icon', "category"]);
   }
   async upload(req, res) {
+    req.body.viewTotal = 0;
     Upload(Admin_App, res, req, req.body, {
       name: "Admin",
       desc: "Đã thêm một ứng dụng"
@@ -19,6 +20,7 @@ class Appcontrollers {
   }
   async edit(req, res) {
     req.body.viewTotal = 0;
+    console.log("req.body" , req.body);
     Edit(Admin_App, res, req, req.body, {
       name: "Admin",
       desc: "Đã sửa một ứng dụng"
