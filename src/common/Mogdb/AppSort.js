@@ -18,7 +18,7 @@ async function GetSortOffer(Model, req, res, search1, search2) {
     } : {
         _id: { $nin: IdArr },
     };
-    await Model.countDocuments().then(async (count_documents) => {
+    await Model.countDocuments(objectSearch).then(async (count_documents) => {
         Model.find(objectSearch, function (err, data) {
             Model.find(objectSearchFilter, function (errNe, dataNe) {
                 const ArrNew = [...data, ...dataNe];
@@ -45,7 +45,7 @@ async function GetSortHot(Model, req, res, search1, search2) {
         ]
     } : {
     };
-    await Model.countDocuments().then(async (count_documents) => {
+    await Model.countDocuments(objectSearch).then(async (count_documents) => {
         Model.find(objectSearch, function (err, data) {
             res.json({
                 data: data,
@@ -68,7 +68,7 @@ async function GetSortNormal(Model, req, res, search1, search2) {
             { [search2]: { $regex: search, $options: "i" } },
         ],
     } : {};
-    await Model.countDocuments().then(async (count_documents) => {
+    await Model.countDocuments(objectSearch).then(async (count_documents) => {
         await Model.find(objectSearch, function (err, data) {
             res.json({
                 data: data,

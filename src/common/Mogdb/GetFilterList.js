@@ -12,7 +12,7 @@ async function GetFilterList(Model, res, req, search1, search2, filters) {
             { [search2]: { $regex: search, $options: "i" } },
         ],
     } : {};
-    await Model.countDocuments().then(async (count_documents) => {
+    await Model.countDocuments(objectSearch).then(async (count_documents) => {
         await Model.find(objectSearch, function (err, data) {
             res.json({
                 data: data,
