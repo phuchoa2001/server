@@ -6,6 +6,7 @@ const IconAdminRouter = require("./icon");
 const CategoryRouter = require("./category");
 const NotificationRouter = require("./notification");
 const PublicRouter = require("./public");
+const CvRouter = require("./cv");
 
 const { CheckLogin, AddToken, DeleteToken } = require("../../common/Mogdb/Login");
 const { authenToken } = require("../../common/Mogdb/authenToken")
@@ -20,7 +21,10 @@ function AdminRouter(app) {
     app.use("/admin/app", AppAdminRouter);
     app.use("/admin/category", CategoryRouter);
     app.use("/admin/notification", NotificationRouter);
+    app.use("/admin/cv", CvRouter);
     app.use("/public", PublicRouter);
+    // app.use("/cv/vi", PublicRouter);
+    // app.use("/cv/en", PublicRouter);
     app.post('/admin/profile', (req, res) => {
         const authorizationHeader = req.headers['authorization'];
         // 'Beaer [token]'

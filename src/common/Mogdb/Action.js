@@ -1,7 +1,6 @@
 const { AddNotification } = require('../../common/Mogdb/Notification')
 
 async function Upload(Model, res, req, module_obj, notification) {
-    console.log("module_obj" , module_obj);
     const post = new Model(module_obj);
     await post.save();
     res.json({ payload: module_obj });
