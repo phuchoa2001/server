@@ -11,6 +11,7 @@ const CvRouter = require("./cv");
 const { CheckLogin, AddToken, DeleteToken } = require("../../common/Mogdb/Login");
 const { authenToken } = require("../../common/Mogdb/authenToken")
 const Admin_login = require("../../app/controllers/models/admin/login");
+const Admin_cv = require("../../app/controllers/models/admin/cv");
 
 
 
@@ -23,6 +24,16 @@ function AdminRouter(app) {
     app.use("/admin/notification", NotificationRouter);
     app.use("/admin/cv", CvRouter);
     app.use("/public", PublicRouter);
+    app.use("/cv/:slug", (req, res) => {
+        console.log(req.params.slug)
+        Admin_cv.findOne({ name: req.params.slug }, function (err, data) {
+            if (err || !data) {
+                res.sendStatus(401);
+            } else {
+                res.redirect(data.url)
+            }
+        })
+    });
     // app.use("/cv/vi", PublicRouter);
     // app.use("/cv/en", PublicRouter);
     app.post('/admin/profile', (req, res) => {
