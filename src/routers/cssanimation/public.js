@@ -7,5 +7,6 @@ const AppControllerCss = require("../../app/controllers/cssanimation/Appcontroll
 
 router.get("/total", PublicControllersCss.total);
 router.get("/app", AppControllerCss.getAll);
+router.get("/app/id", AppControllerCss.getId);
 router.get("/category", CategoryControllerCss.getAll);
 module.exports = router;
