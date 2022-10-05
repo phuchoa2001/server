@@ -2,9 +2,11 @@ const exprees = require("express");
 const router = exprees.Router();
 const CssApp = require("../../app/controllers/cssanimation/Appcontrollers");
 
-router.get("/", CssApp.getAll);
-router.get("/:id", CssApp.getId);
-router.post('/', CssApp.upload);
-router.patch('/:id', CssApp.edit);
-router.delete('/', CssApp.delete);
+const { authenToken, authenTokenClient } = require("../../common/Mogdb/authenToken");
+
+router.get("/", authenTokenClient, CssApp.getAll);
+router.get("/:id", authenTokenClient, CssApp.getId);
+router.post('/', authenToken, CssApp.upload);
+router.patch('/:id', authenToken, CssApp.edit);
+router.delete('/', authenToken, CssApp.delete);
 module.exports = router;

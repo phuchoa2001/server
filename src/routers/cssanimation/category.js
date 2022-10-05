@@ -2,9 +2,11 @@ const exprees = require("express");
 const router = exprees.Router();
 const CssCategory = require("../../app/controllers/cssanimation/Categorycontrollers");
 
-router.get("/", CssCategory.getAll);
-router.get("/:id", CssCategory.getId);
-router.post('/', CssCategory.upload);
-router.patch('/:id', CssCategory.edit);
-router.delete('/', CssCategory.delete);
+const { authenToken, authenTokenClient } = require("../../common/Mogdb/authenToken");
+
+router.get("/", authenTokenClient, CssCategory.getAll);
+router.get("/:id", authenTokenClient, CssCategory.getId);
+router.post('/', authenToken, CssCategory.upload);
+router.patch('/:id', authenToken, CssCategory.edit);
+router.delete('/', authenToken, CssCategory.delete);
 module.exports = router;
