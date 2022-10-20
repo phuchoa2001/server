@@ -12,6 +12,8 @@ const Admin_app = new Schema({
     image: { type: String, ref: "Admin_image", required: true },
     icon: { type: String, ref: "Admin_Icon", required: true },
     goverment: { type: Boolean, required: true },
+    showXoanen: { type: Boolean, required: true },
+    showProfolio: { type: Boolean, required: true },
     viewTotal: { type: Number, require: true },
     createAt: { type: Date, default: Date.now, required: true },
     updateAt: { type: Date, default: Date.now, required: true }
