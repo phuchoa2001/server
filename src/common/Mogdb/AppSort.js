@@ -1,4 +1,6 @@
 
+const { ConditionApp } = require("./Condition");
+
 async function GetSortOffer(Model, req, res, search1, search2) {
     const page = +req.body.page || 1;
     const page_size = +req.body.page_size || 100;
@@ -38,13 +40,8 @@ async function GetSortHot(Model, req, res, search1, search2) {
     const page = +req.body.page || 1;
     const page_size = +req.body.page_size || 100;
     const search = req.body.search || null;
-    const objectSearch = search ? {
-        $or: [
-            { [search1]: { $regex: search, $options: "i" } },
-            { [search2]: { $regex: search, $options: "i" } }
-        ]
-    } : {
-    };
+    const filter = req.body.filter || null;
+    const objectSearch = ConditionApp(search, filter, { search1, search2 });
     await Model.countDocuments(objectSearch).then(async (count_documents) => {
         Model.find(objectSearch, function (err, data) {
             res.json({
@@ -62,12 +59,8 @@ async function GetSortNormal(Model, req, res, search1, search2) {
     const page = +req.body.page || 1;
     const page_size = +req.body.page_size || 100;
     const search = req.body.search || null;
-    const objectSearch = search ? {
-        $or: [
-            { [search1]: { $regex: search, $options: "i" } },
-            { [search2]: { $regex: search, $options: "i" } },
-        ],
-    } : {};
+    const filter = req.body.filter || null;
+    const objectSearch = ConditionApp(search, filter, { search1, search2 });
     await Model.countDocuments(objectSearch).then(async (count_documents) => {
         await Model.find(objectSearch, function (err, data) {
             res.json({
