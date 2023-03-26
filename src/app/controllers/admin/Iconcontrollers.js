@@ -21,10 +21,9 @@ class Imagecontrollers {
     }
   }
   async upload(req, res) {
-    await cloudinary.uploader.upload(
-      `${path.join(__dirname, `../../../public/upload`)}${"\\" + req.file.filename
-      }`,
-      { public_id: req.file.filename },
+    const { name, url } = req.body;
+    await cloudinary.uploader.upload(url,
+      { public_id: name },
       async function (error, result) {
         if (error) {
           res.json({ payload: error });
@@ -36,6 +35,12 @@ class Imagecontrollers {
             format: result.format,
             url: result.url,
           };
+
+          req.body = {
+            ...req.body,
+            ...module_obj
+          }
+
           const post = new Admin_icon(module_obj);
           await post.save();
           AddNotification(

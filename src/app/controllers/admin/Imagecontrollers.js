@@ -19,14 +19,10 @@ class Imagecontrollers {
     GetId(Admin_image, res, req, { _id: req.params.id });
   }
   async upload(req, res) {
-    await cloudinary.uploader.upload(
-      `${path.join(__dirname, `../../../public/upload`)}${"\\" + req.file.filename
-      }`,
-      { public_id: req.file.filename },
+    const { name, url } = req.body;
+    await cloudinary.uploader.upload(url, { public_id: name },
       async function (error, result) {
-        if (error) {
-          res.json({ payload: error });
-        } else {
+        if (result) {
           const module_obj = {
             public_id: result.public_id,
             width: result.width,
@@ -34,6 +30,11 @@ class Imagecontrollers {
             format: result.format,
             url: result.url,
           };
+
+          req.body = {
+            ...req.body,
+            ...module_obj
+          }
           const post = new Admin_image(module_obj);
           await post.save();
           AddNotification(
@@ -41,6 +42,8 @@ class Imagecontrollers {
             "Đã thêm một 1 hình ảnh"
           )
           res.json({ payload: module_obj });
+        } else {
+          res.json({ payload: "error" });
         }
       }
     );
@@ -58,8 +61,8 @@ class Imagecontrollers {
             cloudinary.uploader.destroy(item, async function (err, result) { });
           })
           AddNotification(
-             "Admin",
-             `đã xóa ${DeleteArr.length} hình ảnh`
+            "Admin",
+            `đã xóa ${DeleteArr.length} hình ảnh`
           )
           res.json({ messger: `đã xóa ${DeleteArr.length} ảnh Thành công` });
         })
